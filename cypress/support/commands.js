@@ -25,25 +25,28 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
 // command to cypress
-Cypress.Commands.add('loginToApplication', () => {
-    
-    const userCredentials = {
-        "user": {
-            "email": Cypress.env('username'),
-            "password": Cypress.env('password')
-        }
-    }
+Cypress.Commands.add('loginToApplication', () => {    
+    cy.visit('/login')
+    cy.get('[placeholder="Email"]').type('kanchansingh1123@gmail.com')
+    cy.get('[placeholder="Password"]').type('kanchan')
+    cy.get('form').submit()
 
-    cy.request('POST', Cypress.env('apiUrl')+'api/users/login', userCredentials)
-        .its('body').then( body => {
-            const token = body.user.token
-            cy.wrap(token).as('token')
-            cy.visit('/', {
-                onBeforeLoad (win){
-                    win.localStorage.setItem('jwtToken', token)
-                }
-            })
+    // const userCredentials = {
+    //     "user": {
+    //         "email": Cypress.env('username'),
+    //         "password": Cypress.env('password')
+    //     }
+    // }
 
-        })
-    
+    // cy.request('POST', Cypress.env('apiUrl') + 'api/users/login', userCredentials)
+    //     .its('body').then(body => {
+    //         const token = body.user.token
+    //         cy.wrap(token).as('token')
+    //         cy.visit('/', {
+    //             onBeforeLoad(win) {
+    //                 win.localStorage.setItem('jwtToken', token)
+    //             }
+    //         })
+
+    //     })
 })
