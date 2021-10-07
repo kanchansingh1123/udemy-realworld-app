@@ -3,11 +3,11 @@
 describe('Test with backend', () => {
 
     beforeEach('login to the app', () => {
-        // cy.intercept({method: 'Get', path:'tags'}, {fixture:'tags.json'})
+        cy.intercept({method: 'Get', path:'tags'}, {fixture:'tags.json'})
         cy.loginToApplication()
     })
 
-    it('verify correct request and response', () => {
+    it.skip('verify correct request and response', () => {
         
         cy.intercept('POST', '**/articles').as('postArticles')
 
@@ -25,6 +25,13 @@ describe('Test with backend', () => {
             expect(xhr.response.body.article.description).to.equal('This is a descritption')
         })
 
+    })
+
+    it.only('should gave tags with routing object', () => {
+        cy.get('.tag-list')
+        .should('contain', 'cypress')
+        .and('contain', 'automation')
+        .and('contain', 'testing')
     })
 
     // it('intercepting and modifying the request and response', () => {
@@ -54,13 +61,6 @@ describe('Test with backend', () => {
     //         expect(xhr.response.body.article.description).to.equal('This is a descritption 2')
     //     })
 
-    // })
-
-    // it('should gave tags with routing object', () => {
-    //     cy.get('.tag-list')
-    //     .should('contain', 'cypress')
-    //     .and('contain', 'automation')
-    //     .and('contain', 'testing')
     // })
 
     // it('verify global feed likes count', () => {
