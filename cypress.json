@@ -1,5 +1,5 @@
 {
-    "baseUrl": "http://localhost:4200/",
+    "baseUrl": "http://localhost:3000",
     "ignoreTestFiles": "**/examples/*",
     "viewportHeight": 1080,
     "viewportWidth": 1920,
@@ -9,9 +9,10 @@
             "configFile": "reporter-config.json"
         },
     "env": {
-        "username": "cytest@test.com",
-        "password": "Welcome123",
-        "apiUrl": "https://conduit.productionready.io/"
+        "username": "kanchansingh1123@gmail.com",
+        "password": "kanchan",
+        "apiUrl": "http://localhost:3000/",
+        "apiUrl1": "https://conduit.productionready.io/"
     },
     "retries": {
         "runMode": 2,
