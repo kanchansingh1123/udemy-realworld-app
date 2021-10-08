@@ -27,7 +27,7 @@ describe('Test with backend', () => {
 
     })
 
-    it.only('should gave tags with routing object', () => {
+    it('should gave tags with routing object', () => {
         cy.get('.tag-list')
         .should('contain', 'cypress')
         .and('contain', 'automation')
@@ -63,28 +63,28 @@ describe('Test with backend', () => {
 
     // })
 
-    // it('verify global feed likes count', () => {
-    //     cy.intercept('GET', '**/articles/feed*', {"articles":[],"articlesCount":0})
-    //     cy.intercept('GET', '**/articles*', {fixture: 'articles.json'})
+    it('verify global feed likes count', () => {
+        cy.intercept('GET', '**/articles/feed*', {"articles":[],"articlesCount":0})
+        cy.intercept('GET', '**/articles*', {fixture: 'articles.json'})
 
-    //     cy.contains('Global Feed').click()
-    //     cy.get('app-article-list button').then( listOfbuttons => {
-    //         expect(listOfbuttons[0]).to.contain('1')
-    //         expect(listOfbuttons[1]).to.contain('5')
+        cy.contains('Global Feed').click()
+        cy.get('app-article-list button').then( listOfbuttons => {
+            expect(listOfbuttons[0]).to.contain('1')
+            expect(listOfbuttons[1]).to.contain('5')
 
-    //     })
+        })
 
-    //     cy.fixture('articles').then( file => {
-    //         const articleLink = file.articles[1].slug
-    //         cy.intercept('POST', '**/articles/'+articleLink+'/favorite', file)
-    //     })
+        cy.fixture('articles').then( file => { // reading the "articles" file content from fixture folder.
+            const articleLink = file.articles[1].slug
+            cy.intercept('POST', '**/articles/'+articleLink+'/favorite', file) // // In the post method we can also provide the response
+        })
 
-    //     cy.get('app-article-list button')
-    //     .eq(1)
-    //     .click()
-    //     .should('contain', '6')
+        cy.get('app-article-list button')
+        .eq(1)
+        .click()
+        .should('contain', '6')
 
-    // })
+    })
 
     // it('delete a new article in a global feed', () => {
 
